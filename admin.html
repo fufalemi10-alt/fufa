@@ -14,7 +14,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-appl
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px}
 h1{font-size:1.5rem;margin:0 0 16px}h2{font-size:1.1rem;margin:0 0 10px}
 label{display:block;font-size:.85rem;color:var(--muted);margin:10px 0 4px}
-input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--text);font-size:1rem}
+input,textarea{font:inherit;width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--text);font-size:1rem}
 button{padding:12px 18px;border:0;border-radius:10px;background:var(--accent);color:#fff;font-weight:600;font-size:1rem;margin-top:12px}
 button.del{background:#dc2626;margin:0;padding:8px 12px;font-size:.85rem}
 .row{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line)}
@@ -32,9 +32,10 @@ small{color:var(--muted)}
   <button id="saveTok">Kuusi</button>
 </div>
 <div class="card">
-  <h2>2. Faarfannaa haaraa dabali</h2>
-  <label>Linkii YouTube</label><input id="url" placeholder="https://youtu.be/...">
+  <h2>2. Faarfannaa ykn ibsa haaraa dabali</h2>
+  <label>Linkii YouTube (filannoo)</label><input id="url" placeholder="https://youtu.be/...">
   <label>Maqaa faarfannaa (filannoo)</label><input id="title" placeholder="Yoo duwwaa ta’e ofumaan barbaadama">
+  <label>Ibsa / ergaa kee (namootaaf)</label><textarea id="text" rows="5" placeholder="Waa’ee faarfannaa haaraa kanaa namootaaf barreessi…"></textarea>
   <button id="add">Dabali</button>
   <p id="status"></p>
 </div>
@@ -90,15 +91,15 @@ $("saveTok").onclick=function(){
   st("Kuufameera.");load();
 };
 $("add").onclick=function(){
-  var u=$("url").value.trim(),id=vid(u);
-  if(!id){st("Linkii YouTube sirrii miti.");return}
-  if(songs.some(function(s){return s.id===id})){st("Faarfannaan kun duraanuu jira.");return}
-  var t=$("title").value.trim();
+  var u=$("url").value.trim(),id=u?vid(u):null,t=$("title").value.trim(),x=$("text").value.trim();
+  if(!u&&!x){st("Linkii YouTube ykn ibsa barreessi.");return}
+  if(u&&!id){st("Linkii YouTube sirrii miti.");return}
+  if(id&&songs.some(function(s){return s.id===id})){st("Faarfannaan kun duraanuu jira.");return}
   var go=function(title){
-    songs.unshift({id:id,title:title||"Faarfannaa haaraa",date:new Date().toISOString().slice(0,10)});
-    push("Faarfannaa dabalame").then(function(){$("url").value="";$("title").value=""});
+    songs.unshift({id:id||"",title:title||(id?"Faarfannaa haaraa":"Ergaa"),text:x,date:new Date().toISOString().slice(0,10)});
+    push("Post dabalame").then(function(){$("url").value="";$("title").value="";$("text").value=""});
   };
-  if(t){go(t);return}
+  if(t||!id){go(t);return}
   st("Maqaa barbaadaa jira…");
   fetch("https://noembed.com/embed?url="+encodeURIComponent("https://www.youtube.com/watch?v="+id))
     .then(function(r){return r.json()}).then(function(j){go(j.title)}).catch(function(){go("")});

@@ -25,7 +25,7 @@ section{padding:30px 0}
 h2{font-size:1.35rem;margin:0 0 14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
 .songs{display:grid;gap:18px}
-.song b{display:block;margin:10px 4px 0}
+.post b{display:block;margin:12px 0 2px}.pdate{color:var(--muted)}.ptext{white-space:pre-wrap;margin:8px 0 0}
 .vid{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000 center/cover no-repeat}
 .vid button{position:absolute;inset:0;width:100%;border:0;background:rgba(0,0,0,.28);color:#fff;font-size:52px;cursor:pointer}
 .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -33,6 +33,10 @@ h2{font-size:1.35rem;margin:0 0 14px}
 .soc{display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:16px;text-decoration:none;color:#fff;font-weight:600}
 .soc svg{width:26px;height:26px;fill:#fff;flex:none}
 .soc.yt{background:#e11d1d}.soc.fb{background:#1877f2}.soc.tt{background:#111;border:1px solid #333}
+.svc{list-style:none;padding:0;margin:0 0 12px;display:grid;gap:6px}
+.form label{display:block;font-size:.85rem;color:var(--muted);margin:10px 0 4px}
+.form input,.form textarea{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--text);font:inherit}
+.form .btn{border:0;cursor:pointer;font:inherit;font-weight:600;margin-top:12px}
 footer{text-align:center;color:var(--muted);font-size:.85rem;padding:28px 0 40px}
 </style>
 </head>
@@ -48,7 +52,19 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:28px 0 40px
   <section><h2>Waa’ee koo</h2><div class="card"><p id="bio" style="margin:0"></p></div></section>
   <section id="faarfannaa"><h2>Faarfannaa haaraa</h2><div class="songs" id="songs"></div></section>
   <section><h2>Na hordofi</h2><div class="socials" id="socials"></div></section>
-  <section id="quunnamtii"><h2>Quunnamtii</h2><div class="card"><p style="margin-top:0">Hojii waliin hojjechuuf ykn gaaffii qabdaniif Facebook irratti ergaa nuuf ergaa:</p><a class="btn" id="msg" href="#" target="_blank" rel="noopener">💬 Ergaa ergi</a></div></section>
+  <section id="quunnamtii"><h2>Quunnamtii</h2><div class="card">
+  <p style="margin-top:0">Yaada keessan, gaaffii ykn waamicha sagantaa asitti nuuf ergaa:</p>
+  <div class="form">
+    <label for="fn">Maqaa kee</label><input id="fn" placeholder="Maqaa">
+    <label for="fm">Yaada ykn ergaa kee</label><textarea id="fm" rows="4" placeholder="Ergaa kee as barreessi…"></textarea>
+    <button class="btn" id="sendMail" type="button">✉ Email’n ergi</button>
+    <button class="btn" id="sendWa" type="button">WhatsApp’n ergi</button>
+  </div>
+  <p style="margin:16px 0 8px;color:var(--muted)">Yookaan kallattiin:</p>
+  <a class="btn ghost" id="mail" href="#">✉ Email</a>
+  <a class="btn ghost" id="tel" href="#">📞 Bilbili</a>
+  <a class="btn ghost" id="msg" href="#" target="_blank" rel="noopener">Facebook</a>
+</div></section>
 </main>
 <footer><div class="wrap">© <span id="yr"></span> <span id="name2"></span>. Mirgi hundi eegameera.</div></footer>
 <script>
@@ -58,7 +74,10 @@ var CONFIG={
   bio:"Faarfataa Afaan Oromoo dha. Asirratti faarfannaa koo haaraa dhaggeeffachuu fi kanneen biroo hordofuu dandeessu.",
   youtube:"https://youtube.com/@fufalemi",
   facebook:"https://www.facebook.com/profile.php?id=61596561683551",
-  tiktok:"https://www.tiktok.com/@farfufalemi"
+  tiktok:"https://www.tiktok.com/@farfufalemi",
+  email:"fufalemi10@gmail.com",
+  phone:"0910560036",
+  phoneIntl:"251910560036"
 };
 function el(i){return document.getElementById(i)}
 function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
@@ -66,12 +85,21 @@ document.title=CONFIG.name+" | Faarfataa";
 el("name").textContent=CONFIG.name;el("name2").textContent=CONFIG.name;
 el("tagline").textContent=CONFIG.tagline;el("bio").textContent=CONFIG.bio;
 el("yr").textContent=new Date().getFullYear();el("msg").href=CONFIG.facebook;
+el("mail").href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Waamicha sagantaa");
+el("tel").href="tel:+"+CONFIG.phoneIntl;
+
+function msgText(){var n=el("fn").value.trim(),m=el("fm").value.trim();return (n?"Maqaan koo "+n+".\n":"")+m}
+el("sendMail").onclick=function(){location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Waamicha sagantaa")+"&body="+encodeURIComponent(msgText())};
+el("sendWa").onclick=function(){window.open("https://wa.me/"+CONFIG.phoneIntl+"?text="+encodeURIComponent(msgText()),"_blank")};
+
 function render(list){
   var box=el("songs");
   if(!list||!list.length){box.innerHTML='<div class="card">Faarfannaan haaraan dhiyeenyatti asitti ni dabalama. Yeroo amma YouTube kootii ilaali.<br><br><a class="btn" href="'+esc(CONFIG.youtube)+'" target="_blank" rel="noopener">▶ YouTube koo</a></div>';return}
-  box.innerHTML=list.map(function(s){
-    if(!/^[\w-]{11}$/.test(s.id))return"";
-    return '<div class="song"><div class="vid" data-id="'+s.id+'" style="background-image:url(https://i.ytimg.com/vi/'+s.id+'/hqdefault.jpg)"><button aria-label="Play">▶</button></div><b>'+esc(s.title||"Faarfannaa")+'</b></div>';
+  box.innerHTML=list.map(function(x){
+    var v=/^[\w-]{11}$/.test(x.id||"")?'<div class="vid" data-id="'+x.id+'" style="background-image:url(https://i.ytimg.com/vi/'+x.id+'/hqdefault.jpg)"><button aria-label="Play">▶</button></div>':"";
+    var t=x.text?'<p class="ptext">'+esc(x.text)+'</p>':"";
+    var d=x.date?'<small class="pdate">'+esc(x.date)+'</small>':"";
+    return '<article class="card post">'+v+'<b>'+esc(x.title||"")+'</b>'+d+t+'</article>';
   }).join("");
   box.onclick=function(e){
     var v=e.target.closest(".vid");if(!v||v.querySelector("iframe"))return;
