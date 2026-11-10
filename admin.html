@@ -33,7 +33,7 @@ small{color:var(--muted)}
 </div>
 <div class="card">
   <h2>2. Faarfannaa ykn ibsa haaraa dabali</h2>
-  <label>Linkii YouTube (filannoo)</label><input id="url" placeholder="https://youtu.be/...">
+  <label>Linkii viidiyoo: YouTube, Facebook ykn TikTok (filannoo)</label><input id="url" placeholder="https://youtu.be/...">
   <label>Maqaa faarfannaa (filannoo)</label><input id="title" placeholder="Yoo duwwaa ta’e ofumaan barbaadama">
   <label>Ibsa / ergaa kee (namootaaf)</label><textarea id="text" rows="5" placeholder="Waa’ee faarfannaa haaraa kanaa namootaaf barreessi…"></textarea>
   <button id="add">Dabali</button>
@@ -56,14 +56,22 @@ function api(method,body){
     body:body?JSON.stringify(body):undefined
   });
 }
-function vid(u){var m=u.match(/(?:v=|youtu\.be\/|shorts\/|live\/|embed\/)([\w-]{11})/);return m?m[1]:null}
+function parse(u){
+  var m=u.match(/(?:v=|youtu\.be\/|shorts\/|live\/|embed\/)([\w-]{11})/);
+  if(/youtu/.test(u)&&m)return{p:"yt",id:m[1]};
+  m=u.match(/tiktok\.com\/.*\/video\/(\d+)/);
+  if(m)return{p:"tt",id:m[1]};
+  if(/tiktok\.com/.test(u))return{err:"Linkii TikTok guutuu (…/video/1234…) fayyadami. Linkii gabaabaa (vm.tiktok.com) hin hojjetu: browser keessatti bani, achiis linkii guutuu copy godhi."};
+  if(/^https:\/\/(www\.|m\.|web\.)?(facebook\.com|fb\.watch)\//.test(u))return{p:"fb",id:u,url:u};
+  return null;
+}
 function draw(){
   var l=$("list");
   if(!songs.length){l.innerHTML="<small>Amma faarfannaan hin jiru.</small>";return}
   l.innerHTML="";
   songs.forEach(function(s,i){
     var d=document.createElement("div");d.className="row";
-    var t=document.createElement("span");t.textContent=s.title;
+    var t=document.createElement("span");t.textContent=({yt:"YouTube",fb:"Facebook",tt:"TikTok"}[s.p||(s.id?"yt":"")]||"Ibsa")+" · "+s.title;
     var b=document.createElement("button");b.className="del";b.textContent="Haqi";
     b.onclick=function(){if(confirm("Haquu?")){songs.splice(i,1);push("Faarfannaa haqame")}};
     d.appendChild(t);d.appendChild(b);l.appendChild(d);
@@ -91,17 +99,19 @@ $("saveTok").onclick=function(){
   st("Kuufameera.");load();
 };
 $("add").onclick=function(){
-  var u=$("url").value.trim(),id=u?vid(u):null,t=$("title").value.trim(),x=$("text").value.trim();
-  if(!u&&!x){st("Linkii YouTube ykn ibsa barreessi.");return}
-  if(u&&!id){st("Linkii YouTube sirrii miti.");return}
-  if(id&&songs.some(function(s){return s.id===id})){st("Faarfannaan kun duraanuu jira.");return}
+  var u=$("url").value.trim(),t=$("title").value.trim(),x=$("text").value.trim();
+  var info=u?parse(u):null;
+  if(!u&&!x){st("Linkii viidiyoo ykn ibsa barreessi.");return}
+  if(u&&!info){st("Linkii viidiyoo sirrii miti (YouTube, Facebook ykn TikTok).");return}
+  if(info&&info.err){st(info.err);return}
+  if(info&&songs.some(function(s){return s.id===info.id})){st("Viidiyoon kun duraanuu jira.");return}
   var go=function(title){
-    songs.unshift({id:id||"",title:title||(id?"Faarfannaa haaraa":"Ergaa"),text:x,date:new Date().toISOString().slice(0,10)});
+    songs.unshift({p:info?info.p:"",id:info?info.id:"",url:info&&info.url?info.url:"",title:title||(info?"Viidiyoo haaraa":"Ergaa"),text:x,date:new Date().toISOString().slice(0,10)});
     push("Post dabalame").then(function(){$("url").value="";$("title").value="";$("text").value=""});
   };
-  if(t||!id){go(t);return}
+  if(t||!info||info.p!=="yt"){go(t);return}
   st("Maqaa barbaadaa jira…");
-  fetch("https://noembed.com/embed?url="+encodeURIComponent("https://www.youtube.com/watch?v="+id))
+  fetch("https://noembed.com/embed?url="+encodeURIComponent("https://www.youtube.com/watch?v="+info.id))
     .then(function(r){return r.json()}).then(function(j){go(j.title)}).catch(function(){go("")});
 };
 if($("token").value)load();

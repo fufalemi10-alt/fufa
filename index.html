@@ -37,6 +37,12 @@ h2{font-size:1.35rem;margin:0 0 14px}
 .form label{display:block;font-size:.85rem;color:var(--muted);margin:10px 0 4px}
 .form input,.form textarea{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--text);font:inherit}
 .form .btn{border:0;cursor:pointer;font:inherit;font-weight:600;margin-top:12px}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px;padding-bottom:4px}
+.tabs button{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;white-space:nowrap;cursor:pointer}
+.tabs button.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent}
+.emb{width:100%;border:0;border-radius:16px;display:block;background:#000}
+.emb.tt{height:580px}.emb.fb{height:320px}
+.ext{display:inline-block;margin-top:6px;color:var(--accent)}
 footer{text-align:center;color:var(--muted);font-size:.85rem;padding:28px 0 40px}
 </style>
 </head>
@@ -50,7 +56,9 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:28px 0 40px
 </div></header>
 <main class="wrap">
   <section><h2>Waa’ee koo</h2><div class="card"><p id="bio" style="margin:0"></p></div></section>
-  <section id="faarfannaa"><h2>Faarfannaa haaraa</h2><div class="songs" id="songs"></div></section>
+  <section id="faarfannaa"><h2>Faarfannaa haaraa</h2>
+  <div class="tabs" id="tabs"><button data-f="all" class="on">Hunda</button><button data-f="yt">YouTube</button><button data-f="fb">Facebook</button><button data-f="tt">TikTok</button></div>
+  <div class="songs" id="songs"></div></section>
   <section><h2>Na hordofi</h2><div class="socials" id="socials"></div></section>
   <section id="quunnamtii"><h2>Quunnamtii</h2><div class="card">
   <p style="margin-top:0">Yaada keessan, gaaffii ykn nu jajjabeessuuf asitti nuuf ergaa:</p>
@@ -92,20 +100,39 @@ function msgText(){var n=el("fn").value.trim(),m=el("fm").value.trim();return (n
 el("sendMail").onclick=function(){location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Yaada fi jajjabeessa")+"&body="+encodeURIComponent(msgText())};
 el("sendWa").onclick=function(){window.open("https://wa.me/"+CONFIG.phoneIntl+"?text="+encodeURIComponent(msgText()),"_blank")};
 
-function render(list){
+var ALL=[],FILTER="all";
+function plat(x){return x.p||(x.id?"yt":"")}
+function media(x){
+  var p=plat(x);
+  if(p==="yt"&&/^[\w-]{11}$/.test(x.id||""))return '<div class="vid" data-id="'+x.id+'" style="background-image:url(https://i.ytimg.com/vi/'+x.id+'/hqdefault.jpg)"><button aria-label="Play">▶</button></div>';
+  if(p==="tt"&&/^\d+$/.test(x.id||""))return '<iframe class="emb tt" loading="lazy" src="https://www.tiktok.com/embed/v2/'+x.id+'" allowfullscreen></iframe>';
+  if(p==="fb"&&/^https:\/\/(www\.|m\.|web\.)?(facebook\.com|fb\.watch)\//.test(x.url||""))return '<iframe class="emb fb" loading="lazy" src="https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(x.url)+'&show_text=false&width=560" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe><a class="ext" href="'+esc(x.url)+'" target="_blank" rel="noopener">Facebook irratti ilaali ↗</a>';
+  return "";
+}
+function show(){
   var box=el("songs");
-  if(!list||!list.length){box.innerHTML='<div class="card">Faarfannaan haaraan dhiyeenyatti asitti ni dabalama. Yeroo amma YouTube kootii ilaali.<br><br><a class="btn" href="'+esc(CONFIG.youtube)+'" target="_blank" rel="noopener">▶ YouTube koo</a></div>';return}
+  var list=ALL.filter(function(x){return FILTER==="all"||plat(x)===FILTER});
+  if(!list.length){
+    box.innerHTML=ALL.length?'<div class="card">Viidiyoon kutaa kanaa amma hin jiru.</div>':'<div class="card">Faarfannaan haaraan dhiyeenyatti asitti ni dabalama. Yeroo amma YouTube kootii ilaali.<br><br><a class="btn" href="'+esc(CONFIG.youtube)+'" target="_blank" rel="noopener">▶ YouTube koo</a></div>';
+    return;
+  }
   box.innerHTML=list.map(function(x){
-    var v=/^[\w-]{11}$/.test(x.id||"")?'<div class="vid" data-id="'+x.id+'" style="background-image:url(https://i.ytimg.com/vi/'+x.id+'/hqdefault.jpg)"><button aria-label="Play">▶</button></div>':"";
     var t=x.text?'<p class="ptext">'+esc(x.text)+'</p>':"";
     var d=x.date?'<small class="pdate">'+esc(x.date)+'</small>':"";
-    return '<article class="card post">'+v+'<b>'+esc(x.title||"")+'</b>'+d+t+'</article>';
+    return '<article class="card post">'+media(x)+'<b>'+esc(x.title||"")+'</b>'+d+t+'</article>';
   }).join("");
-  box.onclick=function(e){
-    var v=e.target.closest(".vid");if(!v||v.querySelector("iframe"))return;
-    v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v.dataset.id+'?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
-  };
 }
+function render(list){ALL=list||[];show()}
+el("songs").onclick=function(e){
+  var v=e.target.closest(".vid");if(!v||v.querySelector("iframe"))return;
+  v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v.dataset.id+'?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+};
+el("tabs").onclick=function(e){
+  var b=e.target.closest("button");if(!b)return;
+  FILTER=b.dataset.f;
+  Array.prototype.forEach.call(el("tabs").children,function(c){c.className=c===b?"on":""});
+  show();
+};
 fetch("songs.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(render).catch(function(){render([])});
 var ICON={
 yt:'<svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8zM9.7 15.5v-7l6 3.5-6 3.5z"/></svg>',
