@@ -53,7 +53,7 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:28px 0 40px
   <section id="faarfannaa"><h2>Faarfannaa haaraa</h2><div class="songs" id="songs"></div></section>
   <section><h2>Na hordofi</h2><div class="socials" id="socials"></div></section>
   <section id="quunnamtii"><h2>Quunnamtii</h2><div class="card">
-  <p style="margin-top:0">Yaada keessan, gaaffii ykn waamicha sagantaa asitti nuuf ergaa:</p>
+  <p style="margin-top:0">Yaada keessan, gaaffii ykn nu jajjabeessuuf asitti nuuf ergaa:</p>
   <div class="form">
     <label for="fn">Maqaa kee</label><input id="fn" placeholder="Maqaa">
     <label for="fm">Yaada ykn ergaa kee</label><textarea id="fm" rows="4" placeholder="Ergaa kee as barreessi…"></textarea>
@@ -85,11 +85,11 @@ document.title=CONFIG.name+" | Faarfataa";
 el("name").textContent=CONFIG.name;el("name2").textContent=CONFIG.name;
 el("tagline").textContent=CONFIG.tagline;el("bio").textContent=CONFIG.bio;
 el("yr").textContent=new Date().getFullYear();el("msg").href=CONFIG.facebook;
-el("mail").href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Waamicha sagantaa");
+el("mail").href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Yaada fi jajjabeessa");
 el("tel").href="tel:+"+CONFIG.phoneIntl;
 
 function msgText(){var n=el("fn").value.trim(),m=el("fm").value.trim();return (n?"Maqaan koo "+n+".\n":"")+m}
-el("sendMail").onclick=function(){location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Waamicha sagantaa")+"&body="+encodeURIComponent(msgText())};
+el("sendMail").onclick=function(){location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Yaada fi jajjabeessa")+"&body="+encodeURIComponent(msgText())};
 el("sendWa").onclick=function(){window.open("https://wa.me/"+CONFIG.phoneIntl+"?text="+encodeURIComponent(msgText()),"_blank")};
 
 function render(list){
