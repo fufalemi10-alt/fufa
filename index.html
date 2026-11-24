@@ -47,18 +47,46 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 .install-top.visible{display:block}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Welcome screen and refined app identity */
+.brand .mark{padding:0;background:transparent;border-radius:12px;overflow:hidden}
+.brand .mark img{width:100%;height:100%;object-fit:contain;display:block}
+.welcome-screen{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 22%,rgba(233,189,114,.22),transparent 38%),linear-gradient(145deg,#080a11 0%,#111827 55%,#090b12 100%);transition:opacity .65s ease,visibility .65s ease}
+.welcome-screen.leaving{opacity:0;visibility:hidden;pointer-events:none}
+.welcome-card{width:min(480px,100%);text-align:center;position:relative}
+.welcome-orbit{width:178px;height:178px;margin:0 auto 26px;border-radius:50%;padding:7px;border:1px solid rgba(233,189,114,.58);box-shadow:0 0 0 12px rgba(233,189,114,.045),0 22px 70px #0009;background:linear-gradient(145deg,rgba(244,217,164,.22),rgba(17,21,34,.65))}
+.welcome-orbit img{width:100%;height:100%;object-fit:cover;object-position:center 22%;border-radius:50%;border:3px solid #171d2b}
+.welcome-logo{width:54px;height:54px;object-fit:contain;margin:0 auto 15px;filter:drop-shadow(0 4px 18px rgba(233,189,114,.35))}
+.welcome-kicker{color:var(--gold2);font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:800}
+.welcome-card h1{font-size:clamp(34px,8vw,54px);line-height:1.05;letter-spacing:-.045em;margin:13px 0}
+.welcome-card p{color:#c4c8d2;font-size:15px;margin:0 auto;max-width:350px}
+.welcome-enter{margin-top:28px;min-width:210px;padding:15px 24px;border:0;border-radius:999px;background:linear-gradient(135deg,#f4d9a4,#c38b46);color:#17120a;font:800 14px inherit;cursor:pointer;box-shadow:0 12px 35px rgba(195,139,70,.2)}
+.welcome-foot{margin-top:22px;color:#858b9a;font-size:10px;letter-spacing:.22em;text-transform:uppercase}
+@media(max-width:480px){.welcome-orbit{width:150px;height:150px}.welcome-card h1{font-size:38px}}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Fufa Lemi","jobTitle":"Singer","description":"Afaan Oromoo gospel and worship singer","sameAs":["https://youtube.com/@fufalemi","https://www.facebook.com/profile.php?id=61596561683551","https://www.tiktok.com/@farfufalemi"]}</script>
 </head>
 <body>
+<div class="welcome-screen" id="welcomeScreen" role="dialog" aria-modal="true" aria-label="Welcome to Fufa Lemi Official">
+ <div class="welcome-card">
+  <div class="welcome-orbit"><img src="./Passionate%20Gospel%20Singer%20with%20Microphone.png" alt="Fufa Lemi"></div>
+  <img class="welcome-logo" src="./icon.svg" alt="Fufa Lemi music logo">
+  <div class="welcome-kicker">Afaan Oromoo · Gospel · Worship</div>
+  <h1><span class="gold">Fufa Lemi</span><br>Official</h1>
+  <p>Baga gara Fufa Lemi Official dhuftan. Faarfannaa fi waaqeffannaa garaa irraa maddu waliin qooddanna.</p>
+  <button class="welcome-enter" id="welcomeEnter" type="button">Gara Home seeni&nbsp; →</button>
+  <div class="welcome-foot">Dhaggeeffadhu · Waaqeffadhu · Qoodi</div>
+ </div>
+</div>
 <header><div class="shell nav">
-<a class="brand" href="#"><span class="mark">♫</span><span>FUFA LEMI<small>OFFICIAL MUSIC</small></span></a>
+<a class="brand" href="#"><span class="mark"><img src="./icon.svg" alt="Fufa Lemi logo"></span><span>FUFA LEMI<small>OFFICIAL MUSIC</small></span></a>
 <nav class="links" aria-label="Main navigation"><a href="#faarfannaa">Faarfannaa</a><a href="#waaee">Waa'ee koo</a><a href="#hordofi">Na hordofi</a><a class="nav-cta" href="https://youtube.com/@fufalemi" target="_blank" rel="noopener">▶ YouTube</a></nav>
 </div></header>
 <main>
 <section class="hero"><div class="shell hero-inner">
-<div><span class="eyebrow">Faarfannaa Afaan Oromoo</span><h1>Faarfannaa<br><span class="gold">garaa tuqu.</span></h1>
-<p class="lead">Baga gara fuula Fufa Lemi Official dhuftan. Faarfannaa, waaqeffannaa fi ergaa abdii waliin qooddanna. Dhaggeeffadhaa, nu hordofaa, jaalalaan waliif qoodaa.</p>
+<div><span class="eyebrow">Faarfannaa Afaan Oromoo</span><h1>Fufa Lemi<br><span class="gold">Official.</span></h1>
+<p class="lead">Faarfannaa Afaan Oromoo, waaqeffannaa fi ergaa abdii. Hojii koo haaraa dhaggeeffadhaa, na hordofaa, jaalalaan waliif qoodaa.</p>
 <div class="hero-actions"><a class="btn" href="#faarfannaa">▶ Faarfannaa dhaggeeffadhu</a><a class="btn-outline" href="#hordofi">Na hordofi ↗</a></div>
 <p class="hero-note">Afaan Oromoo · Oromo Gospel · Worship</p></div>
 <div class="feature-art" aria-label="Suuraa Fufa Lemi"><img class="artist-photo" src="./Passionate%20Gospel%20Singer%20with%20Microphone.png" alt="Fufa Lemi" loading="eager" referrerpolicy="no-referrer"><div class="art-caption">Fufa Lemi Official</div></div>
@@ -78,7 +106,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 <button class="install-top" id="installTop" type="button">＋ App install godhi</button>
 <div class="install-backdrop" id="installBackdrop" role="dialog" aria-modal="true" aria-labelledby="installTitle">
  <div class="install-card">
-  <div class="install-logo">♫</div>
+  <div class="install-logo"><img src="./icon.svg" alt="Fufa Lemi logo" style="width:100%;height:100%;object-fit:contain;padding:12px"></div>
   <span class="kicker">Fufaa Official App</span>
   <h2 id="installTitle">App keenya install godhi</h2>
   <p>Faarfannaa haaraa saffisaan argachuuf Fufaa Official bilbila kee irratti dabali. Akkuma appii biraa banuu dandeessa.</p>
@@ -87,6 +115,17 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
  </div>
 </div>
 <script>
+
+/* Welcome screen */
+(function(){
+ const screen=document.getElementById("welcomeScreen");
+ const enter=document.getElementById("welcomeEnter");
+ if(!screen||!enter)return;
+ const close=()=>{screen.classList.add("leaving");setTimeout(()=>screen.remove(),700)};
+ enter.addEventListener("click",close);
+ window.setTimeout(close,5200);
+})();
+
 const CONFIG={youtube:"https://youtube.com/@fufalemi",facebook:"https://www.facebook.com/profile.php?id=61596561683551",tiktok:"https://www.tiktok.com/@farfufalemi"};
 const $=id=>document.getElementById(id);
 $("year").textContent=new Date().getFullYear();
