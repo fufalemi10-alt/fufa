@@ -15,9 +15,8 @@
   "theme_color": "#090b12",
   "icons": [
     {
-      "src": "./icon.svg",
-      "sizes": "192x192 512x512 any",
-      "type": "image/svg+xml",
+      "src": "./Passionate%20Gospel%20Singer%20with%20Microphone.png",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
