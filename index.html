@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090b12">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fufaa Official">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Fufa Lemi Official | Faarfannaa Afaan Oromoo</title>
 <meta name="description" content="Fufa Lemi Official — faarfannaa Afaan Oromoo, Oromo Gospel fi ergaa jajjabinaa. Faarfannaa haaraa dhaggeeffadhu; YouTube, Facebook fi TikTok irratti nu hordofi.">
 <meta name="robots" content="index,follow">
@@ -32,6 +37,15 @@ section{padding:78px 0}.section-head{display:flex;justify-content:space-between;
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot a{color:var(--gold2);text-decoration:none}
 .share-float{position:fixed;right:18px;bottom:18px;z-index:5;border:1px solid rgba(233,189,114,.35);border-radius:50px;background:#171d2b;color:var(--gold2);padding:12px 16px;font-weight:800;box-shadow:0 8px 28px #0008;cursor:pointer}
 @media(max-width:760px){.links{gap:12px}.links a:not(.nav-cta){display:none}.hero{padding:66px 0}.hero-inner{grid-template-columns:1fr;gap:32px}.feature-art{min-height:220px}.mic{font-size:70px}.song-grid,.about{grid-template-columns:1fr}.about-card{min-height:190px}.social-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:10px}section{padding:58px 0}.stats-inner{gap:8px}.stat span{font-size:10px}}
+
+.install-backdrop{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
+.install-backdrop.show{display:flex}.install-card{width:min(430px,100%);padding:26px;border-radius:24px;border:1px solid rgba(233,189,114,.35);background:linear-gradient(145deg,#1a2030,#0f1320);box-shadow:0 25px 90px #0009;text-align:center}
+.install-logo{width:68px;height:68px;margin:0 auto 15px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold2),#b67a35);color:#17120a;font-size:34px;font-weight:900}
+.install-card h2{font-size:25px;margin:8px 0}.install-card p{color:var(--muted);font-size:14px}.install-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}.install-actions button{font:inherit}
+.install-close{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:11px 17px;cursor:pointer;font-weight:700}
+.install-top{position:fixed;left:14px;bottom:18px;z-index:6;display:none;padding:10px 15px;border:1px solid rgba(233,189,114,.45);border-radius:999px;background:#171d2b;color:var(--gold2);font-weight:800;box-shadow:0 8px 28px #0008;cursor:pointer}
+.install-top.visible{display:block}
+
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Fufa Lemi","jobTitle":"Singer","description":"Afaan Oromoo gospel and worship singer","sameAs":["https://youtube.com/@fufalemi","https://www.facebook.com/profile.php?id=61596561683551","https://www.tiktok.com/@farfufalemi"]}</script>
@@ -61,6 +75,17 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 </main>
 <footer><div class="shell foot"><span>© <span id="year"></span> Fufa Lemi Official. Mirgi hundi eegameera.</span><span>Made with ♡ for Afaan Oromoo music</span></div></footer>
 <button class="share-float" id="shareFloat" type="button" aria-label="Share website">↗ Qoodi</button>
+<button class="install-top" id="installTop" type="button">＋ App install godhi</button>
+<div class="install-backdrop" id="installBackdrop" role="dialog" aria-modal="true" aria-labelledby="installTitle">
+ <div class="install-card">
+  <div class="install-logo">♫</div>
+  <span class="kicker">Fufaa Official App</span>
+  <h2 id="installTitle">App keenya install godhi</h2>
+  <p>Faarfannaa haaraa saffisaan argachuuf Fufaa Official bilbila kee irratti dabali. Akkuma appii biraa banuu dandeessa.</p>
+  <p id="installHelp" hidden></p>
+  <div class="install-actions"><button class="btn" id="installNow" type="button">Install Fufaa Official</button><button class="install-close" id="installLater" type="button">Amma miti</button></div>
+ </div>
+</div>
 <script>
 const CONFIG={youtube:"https://youtube.com/@fufalemi",facebook:"https://www.facebook.com/profile.php?id=61596561683551",tiktok:"https://www.tiktok.com/@farfufalemi"};
 const $=id=>document.getElementById(id);
@@ -103,5 +128,56 @@ async function share(title,url){if(navigator.share){try{await navigator.share({t
 $("shareBtn").addEventListener("click",()=>share("Fufa Lemi Official",location.href));
 $("shareFloat").addEventListener("click",()=>share("Fufa Lemi Official",location.href));
 fetch("songs.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("songs");return r.json()}).then(render).catch(()=>render([]));
+/* Installable app (PWA) */
+(function(){
+ const backdrop=$("installBackdrop"),installBtn=$("installNow"),laterBtn=$("installLater"),topBtn=$("installTop"),help=$("installHelp");
+ let deferredPrompt=null;
+ const isStandalone=()=>window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone===true;
+ const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream;
+ const dismissed=()=>{try{return Number(localStorage.getItem("fufaaInstallDismissed")||0)>Date.now()}catch(e){return false}};
+ function showInstall(){
+  if(isStandalone()||dismissed())return;
+  backdrop.classList.add("show");topBtn.classList.remove("visible");
+ }
+ function hideInstall(){
+  backdrop.classList.remove("show");
+  try{localStorage.setItem("fufaaInstallDismissed",String(Date.now()+7*24*60*60*1000))}catch(e){}
+  if(!isStandalone())topBtn.classList.add("visible");
+ }
+ window.addEventListener("beforeinstallprompt",e=>{
+  e.preventDefault();deferredPrompt=e;
+  setTimeout(showInstall,4500);
+ });
+ window.addEventListener("appinstalled",()=>{
+  deferredPrompt=null;backdrop.classList.remove("show");topBtn.classList.remove("visible");
+ });
+ if(isIOS()){
+  installBtn.textContent="Akkaataa install itti godhan";
+  help.hidden=false;
+  help.textContent="Safari keessatti Share (□↑) tuqi; achiis 'Add to Home Screen' filadhu.";
+  setTimeout(showInstall,6500);
+ }
+ installBtn.addEventListener("click",async()=>{
+  if(deferredPrompt){
+   deferredPrompt.prompt();
+   await deferredPrompt.userChoice;
+   deferredPrompt=null;
+   backdrop.classList.remove("show");
+  }else if(isIOS()){
+   help.hidden=false;
+  }else{
+   help.hidden=false;
+   help.textContent="Menu browser (⋮) bani; 'Install app' ykn 'Add to Home screen' filadhu.";
+  }
+ });
+ laterBtn.addEventListener("click",hideInstall);
+ topBtn.addEventListener("click",showInstall);
+ backdrop.addEventListener("click",e=>{if(e.target===backdrop)hideInstall()});
+ if(!isStandalone()&&!isIOS())setTimeout(()=>{if(!dismissed()&&deferredPrompt)showInstall()},9000);
+ if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+ }
+})();
+
 </script>
 </body></html>
