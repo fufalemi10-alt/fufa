@@ -1,144 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="om">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Fufalemi | Faarfataa</title>
-<meta name="description" content="Fufalemi: faarfataa Afaan Oromoo. Faarfannaa haaraa dhaggeeffadhu.">
-<meta name="theme-color" content="#0b0b14">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎤%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b12">
+<title>Fufa Lemi Official | Faarfannaa Afaan Oromoo</title>
+<meta name="description" content="Fufa Lemi Official — faarfannaa Afaan Oromoo, Oromo Gospel fi ergaa jajjabinaa. Faarfannaa haaraa dhaggeeffadhu; YouTube, Facebook fi TikTok irratti nu hordofi.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://fufalemi10-alt.github.io/fufa/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fufa Lemi Official | Faarfannaa Afaan Oromoo">
+<meta property="og:description" content="Faarfannaa Afaan Oromoo fi ergaa abdii. Dhaggeeffadhu, qoodi, nu hordofi.">
+<meta property="og:url" content="https://fufalemi10-alt.github.io/fufa/">
+<meta name="twitter:card" content="summary">
 <style>
-:root{--bg:#f6f4ff;--card:#fff;--text:#16132b;--muted:#5b5778;--accent:#7c3aed;--accent2:#ec4899;--line:rgba(22,19,43,.1);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0b14;--card:#15152a;--text:#f3f1ff;--muted:#a9a5c8;--line:rgba(255,255,255,.1);color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0b0b14;--card:#15152a;--text:#f3f1ff;--muted:#a9a5c8;--line:rgba(255,255,255,.1);color-scheme:dark}
-html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
-.wrap{max-width:720px;margin:0 auto;padding:0 20px}
-.hero{text-align:center;padding:56px 0 32px;background:radial-gradient(600px 300px at 50% 0,rgba(124,58,237,.35),transparent 70%)}
-.avatar{width:132px;height:132px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-size:56px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 40px rgba(124,58,237,.45)}
-h1{font-size:clamp(2rem,8vw,3rem);margin:0;letter-spacing:-.02em;line-height:1.1}
-.tag{color:var(--muted);margin:8px 0 22px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;margin:4px;border-radius:999px;font-weight:600;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2))}
-.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-section{padding:30px 0}
-h2{font-size:1.35rem;margin:0 0 14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
-.songs{display:grid;gap:18px}
-.post b{display:block;margin:12px 0 2px}.pdate{color:var(--muted)}.ptext{white-space:pre-wrap;margin:8px 0 0}
-.vid{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000 center/cover no-repeat}
-.vid button{position:absolute;inset:0;width:100%;border:0;background:rgba(0,0,0,.28);color:#fff;font-size:52px;cursor:pointer}
-.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.socials{display:grid;gap:12px}
-.soc{display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:16px;text-decoration:none;color:#fff;font-weight:600}
-.soc svg{width:26px;height:26px;fill:#fff;flex:none}
-.soc.yt{background:#e11d1d}.soc.fb{background:#1877f2}.soc.tt{background:#111;border:1px solid #333}
-.svc{list-style:none;padding:0;margin:0 0 12px;display:grid;gap:6px}
-.form label{display:block;font-size:.85rem;color:var(--muted);margin:10px 0 4px}
-.form input,.form textarea{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--text);font:inherit}
-.form .btn{border:0;cursor:pointer;font:inherit;font-weight:600;margin-top:12px}
-.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px;padding-bottom:4px}
-.tabs button{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;white-space:nowrap;cursor:pointer}
-.tabs button.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent}
-.emb{width:100%;border:0;border-radius:16px;display:block;background:#000}
-.emb.tt{height:580px}.emb.fb{height:320px}
-.ext{display:inline-block;margin-top:6px;color:var(--accent)}
-footer{text-align:center;color:var(--muted);font-size:.85rem;padding:28px 0 40px}
+:root{color-scheme:dark;--bg:#090b12;--panel:#111522;--panel2:#171d2b;--ink:#f7f4ec;--muted:#a8adbb;--gold:#e9bd72;--gold2:#f4d9a4;--line:rgba(255,255,255,.1);--max:1120px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}a{color:inherit}.shell{width:min(var(--max),calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:rgba(9,11,18,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;letter-spacing:.04em}.mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:#17120a;background:linear-gradient(135deg,var(--gold2),#b67a35);font-size:20px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.2em;font-weight:600}.links{display:flex;align-items:center;gap:24px}.links a{text-decoration:none;color:var(--muted);font-size:14px}.links a:hover{color:var(--gold2)}.nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 19px;border-radius:999px;background:linear-gradient(135deg,var(--gold2),#c38b46);color:#17120a;text-decoration:none;font-weight:800;border:0;cursor:pointer}.nav-cta{font-size:13px}
+.hero{position:relative;overflow:hidden;padding:94px 0 84px;background:radial-gradient(ellipse at 82% 20%,rgba(180,125,58,.19),transparent 35%),radial-gradient(ellipse at 10% 90%,rgba(72,87,132,.17),transparent 40%),linear-gradient(135deg,#0b0e17,#111522 65%,#0b0e17)}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.13;background-image:radial-gradient(#e9bd72 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(90deg,transparent,#000)}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold2);font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:800}.eyebrow:before{content:"";width:26px;height:1px;background:var(--gold)}
+h1{font-size:clamp(42px,7vw,78px);line-height:1.02;letter-spacing:-.055em;margin:20px 0}.gold{color:var(--gold2)}.lead{max-width:580px;color:#c2c5ce;font-size:18px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn-outline{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;border:1px solid rgba(255,255,255,.2);border-radius:999px;text-decoration:none;font-weight:700}.hero-note{margin-top:26px;color:var(--muted);font-size:13px}
+.feature-art{min-height:350px;border:1px solid rgba(233,189,114,.25);border-radius:28px;background:linear-gradient(145deg,rgba(233,189,114,.13),rgba(255,255,255,.025)),var(--panel);display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:0 35px 90px rgba(0,0,0,.35)}.feature-art:before,.feature-art:after{content:"";position:absolute;border:1px solid rgba(233,189,114,.22);border-radius:50%;width:290px;height:290px}.feature-art:after{width:220px;height:220px}.mic{font-size:100px;filter:drop-shadow(0 15px 28px rgba(0,0,0,.4));z-index:1}.art-caption{position:absolute;bottom:25px;text-align:center;color:var(--gold2);font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+.stats{border-bottom:1px solid var(--line);background:#0c0f18}.stats-inner{display:grid;grid-template-columns:repeat(3,1fr);padding:23px 0;text-align:center}.stat strong{display:block;color:var(--gold2);font-size:14px}.stat span{color:var(--muted);font-size:12px}
+section{padding:78px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.kicker{color:var(--gold);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800}h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.04em;line-height:1.12;margin:8px 0}.section-head p{max-width:420px;color:var(--muted);margin:0}
+.song-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.song{background:var(--panel);border:1px solid var(--line);border-radius:22px;overflow:hidden}.song-media{aspect-ratio:16/9;background:linear-gradient(135deg,#252b3c,#111522);display:grid;place-items:center;position:relative}.song-media iframe{width:100%;height:100%;border:0}.play{width:58px;height:58px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(233,189,114,.95);color:#17120a;font-size:22px;cursor:pointer}.song-body{padding:20px}.song-meta{color:var(--gold);font-size:11px;letter-spacing:.13em;text-transform:uppercase}.song h3{font-size:19px;line-height:1.3;margin:8px 0}.song p{color:var(--muted);white-space:pre-line;font-size:14px;margin:8px 0 0}.song-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}.text-link{font-size:13px;color:var(--gold2);text-decoration:none;font-weight:700}
+.empty{padding:30px;border:1px dashed var(--line);border-radius:20px;color:var(--muted);grid-column:1/-1}.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}.about-card{min-height:270px;border-radius:24px;background:linear-gradient(145deg,rgba(233,189,114,.18),rgba(255,255,255,.025)),var(--panel);border:1px solid rgba(233,189,114,.2);display:grid;place-items:center;font-size:82px}.about-copy p{color:var(--muted)}.pill-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.pill{border:1px solid var(--line);border-radius:99px;padding:7px 12px;color:#d7d9df;font-size:12px}
+.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.social{padding:24px;border:1px solid var(--line);border-radius:20px;background:var(--panel);text-decoration:none;transition:transform .2s,border-color .2s}.social:hover{transform:translateY(-4px);border-color:rgba(233,189,114,.5)}.social-icon{font-size:26px}.social strong{display:block;margin:12px 0 4px}.social span{font-size:13px;color:var(--muted)}
+.message{border:1px solid rgba(233,189,114,.22);border-radius:26px;padding:clamp(26px,5vw,54px);background:radial-gradient(ellipse at 100% 0,rgba(233,189,114,.12),transparent 48%),var(--panel)}.message p{max-width:680px;color:var(--muted)}.contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot a{color:var(--gold2);text-decoration:none}
+.share-float{position:fixed;right:18px;bottom:18px;z-index:5;border:1px solid rgba(233,189,114,.35);border-radius:50px;background:#171d2b;color:var(--gold2);padding:12px 16px;font-weight:800;box-shadow:0 8px 28px #0008;cursor:pointer}
+@media(max-width:760px){.links{gap:12px}.links a:not(.nav-cta){display:none}.hero{padding:66px 0}.hero-inner{grid-template-columns:1fr;gap:32px}.feature-art{min-height:220px}.mic{font-size:70px}.song-grid,.about{grid-template-columns:1fr}.about-card{min-height:190px}.social-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:10px}section{padding:58px 0}.stats-inner{gap:8px}.stat span{font-size:10px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Fufa Lemi","jobTitle":"Singer","description":"Afaan Oromoo gospel and worship singer","sameAs":["https://youtube.com/@fufalemi","https://www.facebook.com/profile.php?id=61596561683551","https://www.tiktok.com/@farfufalemi"]}</script>
 </head>
 <body>
-<header class="hero"><div class="wrap">
-  <div class="avatar">🎤</div>
-  <h1 id="name"></h1>
-  <p class="tag" id="tagline"></p>
-  <a class="btn" href="#faarfannaa">▶ Faarfannaa dhaggeeffadhu</a>
-  <a class="btn ghost" href="#quunnamtii">Nu quunnami</a>
+<header><div class="shell nav">
+<a class="brand" href="#"><span class="mark">♫</span><span>FUFA LEMI<small>OFFICIAL MUSIC</small></span></a>
+<nav class="links" aria-label="Main navigation"><a href="#faarfannaa">Faarfannaa</a><a href="#waaee">Waa'ee koo</a><a href="#hordofi">Na hordofi</a><a class="nav-cta" href="https://youtube.com/@fufalemi" target="_blank" rel="noopener">▶ YouTube</a></nav>
 </div></header>
-<main class="wrap">
-  <section><h2>Waa’ee koo</h2><div class="card"><p id="bio" style="margin:0"></p></div></section>
-  <section id="faarfannaa"><h2>Faarfannaa haaraa</h2>
-  <div class="tabs" id="tabs"><button data-f="all" class="on">Hunda</button><button data-f="yt">YouTube</button><button data-f="fb">Facebook</button><button data-f="tt">TikTok</button></div>
-  <div class="songs" id="songs"></div></section>
-  <section><h2>Na hordofi</h2><div class="socials" id="socials"></div></section>
-  <section id="quunnamtii"><h2>Quunnamtii</h2><div class="card">
-  <p style="margin-top:0">Yaada keessan, gaaffii ykn nu jajjabeessuuf asitti nuuf ergaa:</p>
-  <div class="form">
-    <label for="fn">Maqaa kee</label><input id="fn" placeholder="Maqaa">
-    <label for="fm">Yaada ykn ergaa kee</label><textarea id="fm" rows="4" placeholder="Ergaa kee as barreessi…"></textarea>
-    <button class="btn" id="sendMail" type="button">✉ Email’n ergi</button>
-    <button class="btn" id="sendWa" type="button">WhatsApp’n ergi</button>
-  </div>
-  <p style="margin:16px 0 8px;color:var(--muted)">Yookaan kallattiin:</p>
-  <a class="btn ghost" id="mail" href="#">✉ Email</a>
-  <a class="btn ghost" id="tel" href="#">📞 Bilbili</a>
-  <a class="btn ghost" id="msg" href="#" target="_blank" rel="noopener">Facebook</a>
+<main>
+<section class="hero"><div class="shell hero-inner">
+<div><span class="eyebrow">Faarfannaa Afaan Oromoo</span><h1>Faarfannaa<br><span class="gold">garaa tuqu.</span></h1>
+<p class="lead">Baga gara fuula Fufa Lemi Official dhuftan. Faarfannaa, waaqeffannaa fi ergaa abdii waliin qooddanna. Dhaggeeffadhaa, nu hordofaa, jaalalaan waliif qoodaa.</p>
+<div class="hero-actions"><a class="btn" href="#faarfannaa">▶ Faarfannaa dhaggeeffadhu</a><a class="btn-outline" href="#hordofi">Na hordofi ↗</a></div>
+<p class="hero-note">Afaan Oromoo · Oromo Gospel · Worship</p></div>
+<div class="feature-art" aria-label="Fufa Lemi Official music"><div class="mic">🎙️</div><div class="art-caption">Fufa Lemi Official</div></div>
 </div></section>
+<div class="stats"><div class="shell stats-inner"><div class="stat"><strong>FAARFANNAA</strong><span>Waaqeffannaa fi galata</span></div><div class="stat"><strong>AFAAN OROMOO</strong><span>Afaan keenya · Aadaa keenya</span></div><div class="stat"><strong>WALIIN</strong><span>Dhaggeeffadhu · Qoodi · Hordofi</span></div></div></div>
+<section id="faarfannaa"><div class="shell"><div class="section-head"><div><span class="kicker">Music & videos</span><h2>Faarfannaa koo</h2></div><p>Faarfannaa haaraa fi ergaa koo asitti argattu. Viidiyoo irratti cuqaasuun kallattiin ilaaluu dandeessu.</p></div><div class="song-grid" id="songs"><div class="empty">Faarfannaa fe'aa jira…</div></div></div></section>
+<section id="waaee"><div class="shell about"><div class="about-card">🎤</div><div class="about-copy"><span class="kicker">About the artist</span><h2>Waa'ee <span class="gold">Fufa Lemi</span></h2><p>Fufa Lemi faarfataa Afaan Oromoo dha. Kaayyoon isaa karaa faarfannaa fi waaqeffannaatiin ergaa jaalalaa, galataa fi abdii qooduudha. Fuula kana irratti hojii isaa haaraa hordofuu, dhaggeeffachuu fi namoota biroof qooduu dandeessu.</p><div class="pill-row"><span class="pill">Oromo Gospel</span><span class="pill">Worship</span><span class="pill">Afaan Oromoo</span></div></div></div></section>
+<section id="hordofi"><div class="shell"><div class="section-head"><div><span class="kicker">Stay connected</span><h2>Na hordofi</h2></div><p>Faarfannaa haaraa akka isin hin darbineef karaa social media kanaan na hordofaa.</p></div><div class="social-grid">
+<a class="social" href="https://youtube.com/@fufalemi" target="_blank" rel="noopener"><div class="social-icon">▶️</div><strong>YouTube</strong><span>Faarfannaa guutuu ilaali · Subscribe godhi ↗</span></a>
+<a class="social" href="https://www.facebook.com/profile.php?id=61596561683551" target="_blank" rel="noopener"><div class="social-icon">📘</div><strong>Facebook</strong><span>Ergaa fi viidiyoo haaraa hordofi ↗</span></a>
+<a class="social" href="https://www.tiktok.com/@farfufalemi" target="_blank" rel="noopener"><div class="social-icon">🎵</div><strong>TikTok</strong><span>Shorts fi clips haaraa ilaali ↗</span></a>
+</div></div></section>
+<section><div class="shell"><div class="message"><span class="kicker">Let's connect</span><h2>Ergaa kee naaf ergi</h2><p>Yaada, jajjabina, affeerraa tajaajilaa ykn gaaffii yoo qabaatte na quunnami. Faarfannaa kana hiriyoota kee waliin qooduunis hojii koo akka ga'u na gargaara.</p><div class="contact-actions"><a class="btn" href="mailto:fufalemi10@gmail.com">✉ Email naaf ergi</a><a class="btn-outline" href="https://wa.me/251910560036" target="_blank" rel="noopener">WhatsApp ↗</a><button class="btn-outline" id="shareBtn" type="button">↗ Website qoodi</button></div></div></div></section>
 </main>
-<footer><div class="wrap">© <span id="yr"></span> <span id="name2"></span>. Mirgi hundi eegameera.</div></footer>
+<footer><div class="shell foot"><span>© <span id="year"></span> Fufa Lemi Official. Mirgi hundi eegameera.</span><span>Made with ♡ for Afaan Oromoo music</span></div></footer>
+<button class="share-float" id="shareFloat" type="button" aria-label="Share website">↗ Qoodi</button>
 <script>
-var CONFIG={
-  name:"Fufalemi",
-  tagline:"Faarfataa · Afaan Oromoo",
-  bio:"Faarfataa Afaan Oromoo dha. Asirratti faarfannaa koo haaraa dhaggeeffachuu fi kanneen biroo hordofuu dandeessu.",
-  youtube:"https://youtube.com/@fufalemi",
-  facebook:"https://www.facebook.com/profile.php?id=61596561683551",
-  tiktok:"https://www.tiktok.com/@farfufalemi",
-  email:"fufalemi10@gmail.com",
-  phone:"0910560036",
-  phoneIntl:"251910560036"
-};
-function el(i){return document.getElementById(i)}
-function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
-document.title=CONFIG.name+" | Faarfataa";
-el("name").textContent=CONFIG.name;el("name2").textContent=CONFIG.name;
-el("tagline").textContent=CONFIG.tagline;el("bio").textContent=CONFIG.bio;
-el("yr").textContent=new Date().getFullYear();el("msg").href=CONFIG.facebook;
-el("mail").href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Yaada fi jajjabeessa");
-el("tel").href="tel:+"+CONFIG.phoneIntl;
-
-function msgText(){var n=el("fn").value.trim(),m=el("fm").value.trim();return (n?"Maqaan koo "+n+".\n":"")+m}
-el("sendMail").onclick=function(){location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Yaada fi jajjabeessa")+"&body="+encodeURIComponent(msgText())};
-el("sendWa").onclick=function(){window.open("https://wa.me/"+CONFIG.phoneIntl+"?text="+encodeURIComponent(msgText()),"_blank")};
-
-var ALL=[],FILTER="all";
-function plat(x){return x.p||(x.id?"yt":"")}
-function media(x){
-  var p=plat(x);
-  if(p==="yt"&&/^[\w-]{11}$/.test(x.id||""))return '<div class="vid" data-id="'+x.id+'" style="background-image:url(https://i.ytimg.com/vi/'+x.id+'/hqdefault.jpg)"><button aria-label="Play">▶</button></div>';
-  if(p==="tt"&&/^\d+$/.test(x.id||""))return '<iframe class="emb tt" loading="lazy" src="https://www.tiktok.com/embed/v2/'+x.id+'" allowfullscreen></iframe>';
-  if(p==="fb"&&/^https:\/\/(www\.|m\.|web\.)?(facebook\.com|fb\.watch)\//.test(x.url||""))return '<iframe class="emb fb" loading="lazy" src="https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(x.url)+'&show_text=false&width=560" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe><a class="ext" href="'+esc(x.url)+'" target="_blank" rel="noopener">Facebook irratti ilaali ↗</a>';
-  return "";
+const CONFIG={youtube:"https://youtube.com/@fufalemi",facebook:"https://www.facebook.com/profile.php?id=61596561683551",tiktok:"https://www.tiktok.com/@farfufalemi"};
+const $=id=>document.getElementById(id);
+$("year").textContent=new Date().getFullYear();
+function clean(s){return String(s||"").replace(/\*\*/g,"").trim()}
+function make(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
+function link(href,label){const a=make("a","text-link",label);a.href=href;a.target="_blank";a.rel="noopener noreferrer";return a}
+function videoFrame(song,wrap){
+ const p=song.p||(song.id&&song.id.length===11?"yt":"");
+ if(p==="yt"&&/^[\w-]{11}$/.test(song.id||"")){
+  const b=make("button","play","▶");b.type="button";b.setAttribute("aria-label","Viidiyoo taphachiisi");
+  b.addEventListener("click",()=>{const f=document.createElement("iframe");f.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(song.id)+"?autoplay=1";f.title=clean(song.title);f.allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share";f.allowFullscreen=true;wrap.replaceChildren(f)});
+  wrap.append(b);return true;
+ }
+ if(p==="tt"&&/^\d+$/.test(song.id||"")){
+  const f=document.createElement("iframe");f.src="https://www.tiktok.com/embed/v2/"+encodeURIComponent(song.id);f.title="TikTok: "+clean(song.title);f.loading="lazy";f.allowFullscreen=true;wrap.replaceChildren(f);return true;
+ }
+ return false;
 }
-function show(){
-  var box=el("songs");
-  var list=ALL.filter(function(x){return FILTER==="all"||plat(x)===FILTER});
-  if(!list.length){
-    box.innerHTML=ALL.length?'<div class="card">Viidiyoon kutaa kanaa amma hin jiru.</div>':'<div class="card">Faarfannaan haaraan dhiyeenyatti asitti ni dabalama. Yeroo amma YouTube kootii ilaali.<br><br><a class="btn" href="'+esc(CONFIG.youtube)+'" target="_blank" rel="noopener">▶ YouTube koo</a></div>';
-    return;
-  }
-  box.innerHTML=list.map(function(x){
-    var t=x.text?'<p class="ptext">'+esc(x.text)+'</p>':"";
-    var d=x.date?'<small class="pdate">'+esc(x.date)+'</small>':"";
-    return '<article class="card post">'+media(x)+'<b>'+esc(x.title||"")+'</b>'+d+t+'</article>';
-  }).join("");
+function render(songs){
+ const root=$("songs");root.replaceChildren();
+ if(!Array.isArray(songs)||!songs.length){root.append(make("div","empty","Faarfannaan haaraan yeroo dhihootti asitti ni dabalama. Amma YouTube koo daawwadhaa."));return}
+ songs.forEach(song=>{
+  const card=make("article","song"),media=make("div","song-media");
+  const embedded=videoFrame(song,media);
+  if(!embedded){media.append(make("span","","🎶"))}
+  const body=make("div","song-body"),meta=make("div","song-meta",(song.date||"Faarfannaa")+" · "+({yt:"YouTube",tt:"TikTok",fb:"Facebook"}[song.p]||"Ergaa"));
+  body.append(meta,make("h3","",clean(song.title)||"Faarfannaa haaraa"));
+  if(song.text)body.append(make("p","",clean(song.text)));
+  const actions=make("div","song-actions");
+  if(song.p==="fb"&&song.url)actions.append(link(song.url,"Facebook irratti ilaali ↗"));
+  if(song.p==="tt"&&song.id)actions.append(link("https://www.tiktok.com/video/"+encodeURIComponent(song.id),"TikTok irratti ilaali ↗"));
+  if(song.p==="yt"&&song.id)actions.append(link("https://www.youtube.com/watch?v="+encodeURIComponent(song.id),"YouTube irratti ilaali ↗"));
+  if(song.id||song.text){const s=make("button","text-link","Qoodi ↗");s.type="button";s.style.background="none";s.style.border="0";s.style.cursor="pointer";s.addEventListener("click",()=>share(song.title||"Fufa Lemi Official",location.href));actions.append(s)}
+  if(actions.childNodes.length)body.append(actions);
+  card.append(media,body);root.append(card);
+ });
 }
-function render(list){ALL=list||[];show()}
-el("songs").onclick=function(e){
-  var v=e.target.closest(".vid");if(!v||v.querySelector("iframe"))return;
-  v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v.dataset.id+'?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
-};
-el("tabs").onclick=function(e){
-  var b=e.target.closest("button");if(!b)return;
-  FILTER=b.dataset.f;
-  Array.prototype.forEach.call(el("tabs").children,function(c){c.className=c===b?"on":""});
-  show();
-};
-fetch("songs.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(render).catch(function(){render([])});
-var ICON={
-yt:'<svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8zM9.7 15.5v-7l6 3.5-6 3.5z"/></svg>',
-fb:'<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>',
-tt:'<svg viewBox="0 0 24 24"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.7a5.7 5.7 0 1 0 4.9 5.7V9a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg>'};
-el("socials").innerHTML=[["yt","YouTube",CONFIG.youtube],["tt","TikTok",CONFIG.tiktok],["fb","Facebook",CONFIG.facebook]].map(function(x){return '<a class="soc '+x[0]+'" href="'+esc(x[2])+'" target="_blank" rel="noopener">'+ICON[x[0]]+x[1]+'</a>'}).join("");
+async function share(title,url){if(navigator.share){try{await navigator.share({title,text:"Fufa Lemi Official — faarfannaa Afaan Oromoo",url});return}catch(e){if(e.name==="AbortError")return}}try{await navigator.clipboard.writeText(url);alert("Linkiin website copy ta'eera. Namootaaf qoodi.")}catch(e){prompt("Linkii kana copy godhi:",url)}}
+$("shareBtn").addEventListener("click",()=>share("Fufa Lemi Official",location.href));
+$("shareFloat").addEventListener("click",()=>share("Fufa Lemi Official",location.href));
+fetch("songs.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("songs");return r.json()}).then(render).catch(()=>render([]));
 </script>
-</body>
-</html>
+</body></html>
