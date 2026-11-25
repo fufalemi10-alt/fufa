@@ -64,6 +64,39 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 .welcome-foot{margin-top:22px;color:#858b9a;font-size:10px;letter-spacing:.22em;text-transform:uppercase}
 @media(max-width:480px){.welcome-orbit{width:150px;height:150px}.welcome-card h1{font-size:38px}}
 
+
+/* 2026 visual refresh — keep the existing icon.svg brand mark unchanged */
+:root{--bg:#080b13;--panel:#111827;--panel2:#172033;--gold:#f0c879;--gold2:#ffe2a4;--line:rgba(255,255,255,.11);--max:1180px}
+body{background:radial-gradient(ellipse at 12% 0%,rgba(65,91,145,.13),transparent 34%),#080b13}
+header{background:rgba(8,11,19,.78);border-bottom-color:rgba(255,255,255,.08)}
+.nav{height:82px}
+.brand{letter-spacing:.07em}.brand .mark{width:46px;height:46px}
+.links{gap:28px}.links a{transition:color .2s ease}
+.nav-cta,.btn{box-shadow:0 8px 26px rgba(195,139,70,.16);transition:transform .2s ease,box-shadow .2s ease}
+.nav-cta:hover,.btn:hover{transform:translateY(-2px);box-shadow:0 13px 32px rgba(195,139,70,.24)}
+.hero{padding:110px 0 96px;background:radial-gradient(ellipse at 82% 20%,rgba(197,145,72,.22),transparent 35%),radial-gradient(ellipse at 10% 90%,rgba(72,102,165,.2),transparent 42%),linear-gradient(135deg,#090d17,#121b2c 62%,#090d17)}
+.hero-inner{gap:64px}.hero h1{font-size:clamp(48px,7.5vw,88px)}
+.lead{font-size:clamp(17px,2vw,20px);line-height:1.75;color:#d0d4df}
+.feature-art{min-height:430px;border-radius:34px;border-color:rgba(240,200,121,.32);box-shadow:0 36px 100px rgba(0,0,0,.42)}
+.artist-photo{object-position:center 22%;transition:transform .8s ease}.feature-art:hover .artist-photo{transform:scale(1.035)}
+.stats{background:rgba(255,255,255,.018);backdrop-filter:blur(12px)}
+.stats-inner{padding:28px 0}.stat strong{font-size:15px;letter-spacing:.08em}
+section{padding:94px 0}.section-head{margin-bottom:36px}h2{font-size:clamp(32px,4.5vw,48px)}
+.song-grid{gap:22px}.song{border-radius:26px;background:linear-gradient(155deg,rgba(255,255,255,.045),transparent 55%),#111827;border-color:rgba(255,255,255,.09);box-shadow:0 18px 44px rgba(0,0,0,.13);transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease}
+.song:hover{transform:translateY(-5px);border-color:rgba(240,200,121,.34);box-shadow:0 24px 56px rgba(0,0,0,.24)}
+.song-media{background:radial-gradient(circle at 50% 45%,rgba(240,200,121,.2),transparent 42%),linear-gradient(135deg,#222d43,#101725)}
+.play{box-shadow:0 8px 28px rgba(0,0,0,.25);transition:transform .2s ease}.play:hover{transform:scale(1.07)}
+.about-card{border-radius:30px;box-shadow:inset 0 1px rgba(255,255,255,.08),0 24px 70px #0003}
+.social{border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012));padding:28px;min-height:160px}
+.social:hover{transform:translateY(-5px);box-shadow:0 20px 46px #0004}
+.message{border-radius:32px;background:radial-gradient(ellipse at 100% 0,rgba(233,189,114,.16),transparent 48%),linear-gradient(145deg,#151e2e,#101522);box-shadow:0 24px 70px rgba(0,0,0,.18)}
+footer{background:rgba(255,255,255,.015)}
+.share-float{backdrop-filter:blur(14px);transition:transform .2s ease}.share-float:hover{transform:translateY(-3px)}
+.welcome-screen{background:radial-gradient(ellipse at 50% 22%,rgba(233,189,114,.25),transparent 38%),radial-gradient(ellipse at 90% 80%,rgba(74,103,169,.16),transparent 35%),linear-gradient(145deg,#070a12,#121c2e 55%,#090b12)}
+.welcome-orbit{box-shadow:0 0 0 12px rgba(233,189,114,.05),0 28px 90px #000b}
+@media(max-width:760px){.nav{height:70px}.links{gap:10px}.hero{padding:76px 0 68px}.hero-inner{gap:30px}.feature-art{min-height:320px}section{padding:68px 0}.social{min-height:0}}
+@media(min-width:761px){.song-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.social-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Fufa Lemi","jobTitle":"Singer","description":"Afaan Oromoo gospel and worship singer","sameAs":["https://youtube.com/@fufalemi","https://www.facebook.com/profile.php?id=61596561683551","https://www.tiktok.com/@farfufalemi"]}</script>
 </head>
