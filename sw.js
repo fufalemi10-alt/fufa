@@ -1,5 +1,5 @@
-const CACHE_NAME = "fufa-lemi-official-v2";
-const APP_SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg", "./Passionate%20Gospel%20Singer%20with%20Microphone.png", "./songs.json"];
+const CACHE_NAME = "fufa-lemi-official-v3";
+const APP_SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg", "./app-icon.svg", "./Passionate%20Gospel%20Singer%20with%20Microphone.png", "./songs.json"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));
 });
