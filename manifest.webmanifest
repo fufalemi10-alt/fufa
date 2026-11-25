@@ -15,10 +15,10 @@
   "theme_color": "#090b12",
   "icons": [
     {
-      "src": "./app-icon.svg",
+      "src": "./app-icon.svg?v=5",
       "type": "image/svg+xml",
       "sizes": "512x512",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
